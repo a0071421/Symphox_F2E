@@ -1,9 +1,12 @@
 // home
 
 .home {
-  padding: 3rem;
+  padding: 2rem;
   display: flex;
   justify-content: space-between;
+  @include xs() {
+    display: block;
+  }
 }
 
 // dropdown

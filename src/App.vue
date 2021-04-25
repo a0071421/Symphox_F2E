@@ -12,6 +12,5 @@ html, body, #app {
 #app {
   max-width: 1024px;
   margin: 0 auto;
-  background-color: #efe9e7;
 }
 </style>
