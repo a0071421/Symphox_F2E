@@ -1,0 +1,27 @@
+// input
+.input-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+.input-label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+.input-control {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.375rem;
+  border-radius: 0.25rem;
+  border: 1px solid #989898;
+  &:focus {
+    outline: none;
+    border-color: #4d8fac;
+    box-shadow: 0px 0px 0 2px #19b5fe;
+  }
+}
+
+.addbtn {
+  position: absolute;
+  top: 0px;
+  right: -50px;
+}

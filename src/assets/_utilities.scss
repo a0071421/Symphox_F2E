@@ -1,0 +1,60 @@
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.float-right {
+  float: right;
+}
+
+.clearfix:after {
+  display: block;
+  clear: both;
+  content: "";
+}
+// btn
+
+.btn {
+  font-size: inherit;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 0.25rem;
+  padding: 1rem 1.5rem;
+  border: 1px solid transparent;
+  background-color: #19b5fe;
+  &:hover {
+    background-color: #36bfff;
+  }
+}
+
+// link
+
+.link {
+  color: black;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  display: block;
+  &:hover {
+    background-color: #f1f1f1;
+  }
+}
+
+// flex
+
+.d-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+// bg-cover
+.bg-cover {
+  background-position: center center;
+  background-size: cover;
+}
+
+.word-wrap {
+  word-wrap: break-word;
+}
