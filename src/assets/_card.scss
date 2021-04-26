@@ -1,11 +1,10 @@
 // card
-
 .card {
   display: flex;
-  cursor: pointer;
   flex-direction: column;
   border-radius: 0.25rem;
   border: 1px solid #dcdcdc;
+  margin-left: 0.5rem;
   .card-header {
     position: relative;
     padding: 0.75rem 1.25rem;
@@ -23,21 +22,41 @@
     }
   }
   .card-body {
+    position: relative;
     flex: 1 1 auto;
-    padding: 1rem 0.75rem;
   }
   .card-img {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
   }
 
   .card-content {
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 1rem 0.75rem;
+    .selectpd {
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+    }
   }
 
   .content-detail {
+    position: relative;
     margin-left: 0.5rem;
     flex: 0 0 66.67%;
     max-width: 66.67%;
+    .pd-undo {
+      color: #46b034;
+      font-weight: bold;
+    }
+    .pd-completed {
+      color: #a7a7a7;
+      font-weight: bold;
+    }
+    .pd-name {
+      margin-top: 0.75rem;
+    }
   }
 }

@@ -1,9 +1,9 @@
 // home
 
 .home {
-  padding: 2rem;
+  padding: 1rem 2rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   @include xs() {
     display: block;
   }
@@ -13,6 +13,9 @@
 
 .dropdown {
   position: relative;
+  > .btn {
+    margin-bottom: 0;
+  }
   .dropdown-content {
     display: none;
     position: absolute;
@@ -24,4 +27,9 @@
   &:hover .dropdown-content {
     display: block;
   }
+}
+// account
+
+.account {
+  padding: 0.5rem 2rem;
 }

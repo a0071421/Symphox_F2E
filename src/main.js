@@ -2,7 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
@@ -15,3 +14,15 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth) {
+    if (!JSON.parse(localStorage.getItem('tempAccount'))) {
+      next({ path: '/' })
+    } else {
+      next()
+    }
+  } else {
+    router.push('/home')
+  }
+})

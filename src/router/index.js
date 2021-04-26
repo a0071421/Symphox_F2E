@@ -17,14 +17,20 @@ const routes = [
       {
         path: '/home/checkOrder',
         name: 'CheckOrder',
-        component: () => import('@/views/CheckOrder.vue')
+        component: () => import('@/views/CheckOrder.vue'),
+        meta: { requiresAuth: true }
       },
       {
         path: '/home/createOrder',
         name: 'CreateOrder',
-        component: () => import('@/views/CreateOrder.vue')
+        component: () => import('@/views/CreateOrder.vue'),
+        meta: { requiresAuth: true }
       }
     ]
+  },
+  {
+    path: '*',
+    redirect: '/'
   }
 ]
 
