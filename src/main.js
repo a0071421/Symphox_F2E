@@ -23,6 +23,14 @@ router.beforeEach((to, from, next) => {
       next()
     }
   } else {
-    router.push('/home')
+    if (to.path === '/') {
+      if (JSON.parse(localStorage.getItem('tempAccount'))) {
+        next({ path: '/home' })
+      } else {
+        next()
+      }
+    } else {
+      next()
+    }
   }
 })

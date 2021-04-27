@@ -24,8 +24,9 @@ export default {
   methods: {
     logout () {
       const vm = this
-      vm.$router.push('/')
       localStorage.removeItem('tempAccount')
+      vm.$store.commit('users/SUCCESS', true)
+      vm.$router.push('/')
     }
   },
   components: {

@@ -5,7 +5,7 @@
         <div class="input-group d-flex">
           <label class="input-label" for="title">商品名稱: </label>
           <input type="text" class="input-control" id="title" required v-model="field.name">
-          <a v-if="i === 0" href="#" class="addbtn" @click.prevent="createNewPd()">
+          <a v-if="i === 0" href="#" class="addbtn" @click.prevent="$store.commit('orders/NEWPD', uuid())">
             <i class="fas fa-plus-circle fa-2x"></i>
           </a>
           <a v-if="i !== 0" href="#" class="minusbtn" @click.prevent="pdfields.splice(i, 1)">
@@ -36,56 +36,25 @@
 export default {
   data () {
     return {
-      pdfields: [],
-      orders: [],
       ordersLength: 0
     }
   },
   methods: {
-    getOrders () {
-      const vm = this
-      const api = 'http://localhost:3000/orders'
-      vm.$http.get(api).then((response) => {
-        vm.orders = response.data
-        vm.ordersLength = vm.orders.length
-        vm.createNewPd()
-      })
-    },
-    createNewPd () {
-      const vm = this
-      vm.ordersLength++
-      vm.pdfields.push({
-        id: vm.ordersLength,
-        name: '',
-        logo: '',
-        status: {
-          code: '',
-          type: ''
-        },
-        date: ''
+    uuid () { // 產生uuid
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+        const r = Math.random() * 16 | 0
+        const v = c === 'x' ? r : (r & 0x3 | 0x8)
+        return v.toString(16)
       })
     },
     addAllPd () {
       const vm = this
-      vm.pdfields[0].date = vm.getDate()
-      const api = 'http://localhost:3000/orders'
-      vm.pdfields.forEach((item) => {
-        vm.$http.post(api, { ...item }).then((response) => {
-          console.log(response)
-        })
-      })
-      vm.pdfields = []
-      vm.createNewPd()
+      const date = vm.getDate()
+      const uuid = vm.uuid()
+      this.$store.dispatch('orders/addAllPd', { date, uuid })
     },
     setType (i, code) {
-      const vm = this
-      if (Number(code) === 1) {
-        vm.pdfields[i].status.type = '處理中'
-      } else if (Number(code) === 2) {
-        vm.pdfields[i].status.type = '已成立'
-      } else {
-        vm.pdfields[i].status.type = ''
-      }
+      this.$store.commit('orders/SETTYPE', { i, code })
     },
     getDate () {
       const d = new Date()
@@ -101,10 +70,18 @@ export default {
       return String([year, month, day].join('/'))
     }
   },
+  computed: {
+    orders () {
+      return this.$store.state.orders.orders
+    },
+    pdfields () {
+      return this.$store.state.orders.pdfields
+    }
+  },
   created () {
     const vm = this
-    vm.getOrders()
-    console.log(vm.getDate())
+    vm.$store.dispatch('orders/getOrders')
+    vm.$store.commit('orders/NEWPD')
   }
 }
 </script>

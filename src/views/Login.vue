@@ -28,33 +28,18 @@ export default {
       {
         email: '',
         password: ''
-      }, // 暫存帳戶
-      success: true
+      } // 暫存帳戶
     }
   },
   methods: {
     login () {
-      const vm = this
-      const api = 'http://localhost:3000/accounts'
-      vm.$http.get(api).then((response) => {
-        const dbAccount = response.data
-        if (dbAccount.email === vm.account.email &&
-            dbAccount.password === vm.account.password) {
-          localStorage.setItem('tempAccount', JSON.stringify(vm.account))
-          vm.$router.push('/home')
-        } else {
-          vm.success = false
-        }
-      })
+      this.$store.dispatch('users/login', this.account)
     }
   },
-  created () {
-    /* const vm = this
-    vm.login() */
+  computed: {
+    success () {
+      return this.$store.state.users.success
+    }
   }
 }
 </script>
-
-<style scoped lang="scss">
-
-</style>
